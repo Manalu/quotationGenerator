@@ -24,6 +24,7 @@
                     </div></li>
                     <li><a href="<?php echo site_url(); ?>">Dashboard</a></li>
                     <li><a href="<?php echo site_url('see-all-items'); ?>">All Items</a></li>
+                    <li><a href="<?php echo site_url('change-password'); ?>">Change Password</a></li>
                     <!-- <li><a href="#">Invoices</a></li> -->
                     <li><a href="https://www.youtube.com/watch?v=v5l7h7NGHY4" target="_blank">How to use?</a></li>
                 </ul>

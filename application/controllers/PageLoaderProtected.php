@@ -15,6 +15,13 @@
         }
         
 
+        public function change_password(){
+            $data['title'] = 'Change Password';
+            $data['success'] = $data['error'] = '';
+            $this->load->view('templates/app_header', $data);
+            $this->load->view('app_pages/change_pwd', $data);
+            $this->load->view('templates/app_footer', $data);
+        }
 
         public function dashboard(){
             $data['title'] = 'App Dashboard';

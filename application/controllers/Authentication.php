@@ -12,6 +12,59 @@ class Authentication extends CI_Controller {
         parent::__construct();
         $this->load->model('AuthModel');
     }
+
+    public function change_pwd(){
+
+        $currentPwdEntered = $this->input->post('currentPwd');
+
+        $newPwdOne = $this->input->post('newPwdOne');
+        $newPwdTwo = $this->input->post('newPwdTwo');
+
+        $loggedinUserEmail = $this->session->userdata('email');
+
+        $userData = $this->AuthModel->fetch_user_by_email($loggedinUserEmail);
+
+        if(password_verify($currentPwdEntered,$userData['password'])){
+            
+            if ($newPwdOne==$newPwdTwo) {
+
+                $newPwdHash = password_hash($newPwdOne,PASSWORD_DEFAULT);
+
+                $pwdUpdated = $this->AuthModel->change_pwd($loggedinUserEmail,$newPwdHash);
+                
+                if ($pwdUpdated) {
+                    $data['title'] = 'Change Password';
+                    $data['success'] = 'Password is updated successfully.'; $data['error'] = '';
+                    $this->load->view('templates/app_header', $data);
+                    $this->load->view('app_pages/change_pwd', $data);
+                    $this->load->view('templates/app_footer', $data);                    
+                }else{
+                    $data['title'] = 'Change Password';
+                    $data['success'] = ''; $data['error'] = 'We are experiencing technical issues, please try again';
+                    $this->load->view('templates/app_header', $data);
+                    $this->load->view('app_pages/change_pwd', $data);
+                    $this->load->view('templates/app_footer', $data);                    
+                }
+
+            } else {
+                $data['title'] = 'Change Password';
+                $data['success'] = ''; $data['error'] = 'New Passwords dont match';
+                $this->load->view('templates/app_header', $data);
+                $this->load->view('app_pages/change_pwd', $data);
+                $this->load->view('templates/app_footer', $data);
+            }
+
+        }else{
+
+            $data['title'] = 'Change Password';
+            $data['success'] = ''; $data['error'] = 'Current Password is incorrect';
+            $this->load->view('templates/app_header', $data);
+            $this->load->view('app_pages/change_pwd', $data);
+            $this->load->view('templates/app_footer', $data);
+
+        }
+
+    }
     
 
     public function login()

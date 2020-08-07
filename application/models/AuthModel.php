@@ -16,6 +16,12 @@
             
             return $this->db->get_where('users',array('email'=>$email))->row_array();
         }
+
+        public function change_pwd($loggedinUserEmail,$newPwdHash){
+            $this->db->where('email',$loggedinUserEmail);
+            $this->db->set('password',$newPwdHash);
+            return $this->db->update('users');
+        }
         
     
     }

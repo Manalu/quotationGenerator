@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
+$route['change-password-exe'] = 'Authentication/change_pwd';
+$route['change-password'] = 'PageLoaderProtected/change_password';
 $route['delete-item-exe'] = 'Items/delete';
 $route['create-invoice-and-download'] = 'Invoices/create_invoice';
 $route['fetch-costs-and-cloth-reqd'] = 'AjaxController/fetch_costs_cloth_reqd_for_item_and_size';
