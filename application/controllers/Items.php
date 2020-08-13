@@ -35,11 +35,13 @@
                 $title = $this->input->post('item_title');
 
                 $sizes = json_encode($this->input->post('sizes[]'));
-    
-
-                $prod_costs = json_encode($this->input->post('prod_costs[]'));
-                $cloth_reqds = json_encode($this->input->post('cloth_reqds[]'));
                 
+                $prod_costs = $this->input->post('prod_costs[]');
+
+
+
+                $cloth_reqds = json_encode($this->input->post('cloth_reqds[]'));
+                $prod_costs = json_encode($prod_costs);
     
                 $obj_to_insert = array(
     

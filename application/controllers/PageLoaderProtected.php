@@ -58,6 +58,14 @@
                 // 'labour_cost' => json_decode($first_item['labour_cost'],TRUE)[0],
                 'cloth_reqd' => json_decode($first_item['cloth_reqd'],TRUE)[0]
             );
+            $this->load->database();
+            
+            $this->db->where('id','1');
+            $inv_data = $this->db->get('invoices')->row_array();
+            $new_latest_inv_id = $inv_data['latest_inv_id']+1;
+
+            $data['new_latest_inv_id'] = $new_latest_inv_id;
+
             $data['error'] = $data['success'] = '';
             $this->load->view('templates/app_header', $data);
             $this->load->view('app_pages/add_new_invoice', $data);
